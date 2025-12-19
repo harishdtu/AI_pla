@@ -1,0 +1,319 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* ===========================
+   LAYOUT
+=========================== */
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.sidebar {
+  width: 230px;
+  padding: 16px;
+  background: linear-gradient(180deg, #111827, #020617);
+  color: white;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-item {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #1f2937;
+  border-radius: 8px;
+  cursor: grab;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar-item:hover {
+  background: #374151;
+  transform: translateY(-1px);
+}
+
+/* ===========================
+   CANVAS
+=========================== */
+
+.canvas {
+  flex: 1;
+  position: relative;
+  background: radial-gradient(#d1d5db 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ===========================
+   CONFIG PANEL
+=========================== */
+
+.config {
+  width: 260px;
+  padding: 16px;
+  background: #ffffff;
+  border-left: 1px solid #e5e7eb;
+}
+
+.config h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.config p {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+/* ===========================
+   NODES (BASE)
+=========================== */
+
+.node {
+  padding: 14px;
+  width: 190px;
+  border-radius: 12px;
+  border: 2px solid;
+  background: white;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.node:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.node strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+/* ===========================
+   NODE COLORS
+=========================== */
+
+/* User Query */
+.node.user {
+  border-color: #2563eb;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+/* Knowledge Base */
+.node.kb {
+  border-color: #16a34a;
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+
+/* LLM Engine */
+.node.llm {
+  border-color: #7c3aed;
+  background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+}
+
+/* Output */
+.node.output {
+  border-color: #ea580c;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+}
+
+/* ===========================
+   REACT FLOW HANDLES
+=========================== */
+
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  background: #111827;
+  border: 2px solid white;
+}
+
+.react-flow__handle:hover {
+  background: #2563eb;
+}
+
+/* ===========================
+   EDGES
+=========================== */
+
+.react-flow__edge-path {
+  stroke: #4b5563;
+  stroke-width: 2.5;
+}
+
+.react-flow__edge.animated path {
+  stroke-dasharray: 6;
+  animation: dashdraw 1s linear infinite;
+}
+
+@keyframes dashdraw {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+/* ===========================
+   BUILD BUTTON
+=========================== */
+
+.build-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.4);
+}
+
+.build-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(37,99,235,0.5);
+}
+
+/* ===========================
+   CHAT MODAL
+=========================== */
+
+.chat {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 320px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  padding: 12px;
+}
+
+.chat h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.chat-box {
+  height: 180px;
+  overflow-y: auto;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.user {
+  text-align: right;
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.bot {
+  text-align: left;
+  color: #16a34a;
+  margin-bottom: 6px;
+}
+
+.chat input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 6px;
+}
+
+.chat button {
+  width: 100%;
+  padding: 8px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.chat button:hover {
+  background: #15803d;
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 10px;
+}
+/* Entry Node Badge */
+.node.user::before {
+  content: "START";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* Output Node Badge */
+.node.output::before {
+  content: "END";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: #ea580c;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+/* Remove React Flow default selection outline */
+/* REMOVE default React Flow node box */
+/* REMOVE default React Flow node styling */
+.react-flow__node {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.node {
+  position: relative;   /* VERY IMPORTANT */
+}
+
+
